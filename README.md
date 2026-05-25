@@ -461,3 +461,55 @@ class MyFuncs {
 myproject/
 ├── main.tr
 └── mymodule.trm
+```
+Шаг 3: Импортируйте и используйте
+```trinity
+// main.tr
+module MyProject;
+import mymodule;
+
+class App {
+    static int main() {
+        println(mymodule.greet("World"));     // Hello, World!
+        println(mymodule.double(21));         // 42
+        println(mymodule.factorial(5));       // 120
+        return 0;
+    }
+}
+```
+Вызов: имя_модуля.имя_функции(аргументы)
+
+Шаг 4: Запустите
+```powershell
+trinity main.tr --run
+```
+Где Trinity ищет модули
+Рядом с программой — ./mymodule.trm
+
+В папке packages — ./packages/mymodule/src/mymodule.trm
+
+Создание пакета для распространения
+Структура пакета:
+
+```text
+mymodule/
+├── trinity.json        # Метаданные
+└── src/
+    └── mymodule.trm    # Код модуля
+trinity.json:
+```
+
+```json
+{
+    "name": "mymodule",
+    "version": "0.1.0",
+    "description": "My awesome module",
+    "author": "Your Name"
+}
+```
+Частые ошибки
+Ошибка	Решение
+module не найдено	Проверьте имя файла: math.trm, а не math.tr
+Функция не найдена	Функции должны быть static и внутри class
+Unknown: math.add	Импорт работает? Проверьте import math;
+'@	Set-Content GUIDE_MODULES.md -Encoding UTF8
