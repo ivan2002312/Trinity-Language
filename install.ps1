@@ -40,7 +40,7 @@ Write-Host "Repository ready!" -ForegroundColor Green
 # 4. Сборка и установка
 Write-Host "[4/4] Building & Installing..." -ForegroundColor Yellow
 cargo build --release
-cargo install --path .
+cargo install --path $env:USERPROFILE\Trinity-Language
 
 Write-Host ""
 Write-Host "============================================" -ForegroundColor Green
