@@ -496,8 +496,8 @@ mymodule/
 ├── trinity.json        # Метаданные
 └── src/
     └── mymodule.trm    # Код модуля
-trinity.json:
 ```
+trinity.json:
 
 ```json
 {
