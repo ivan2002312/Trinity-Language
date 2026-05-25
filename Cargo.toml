@@ -1,7 +1,11 @@
 [package]
-name = "trinity-compiler"
-version = "0.3.0"
+name = "trinity"
+version = "1.0.0"
 edition = "2021"
+
+[[bin]]
+name = "trinity"
+path = "src/main.rs"
 
 [dependencies]
 logos = "0.14"
