@@ -513,5 +513,4 @@ trinity.json:
 module не найдено	Проверьте имя файла: math.trm, а не math.tr
 Функция не найдена	Функции должны быть static и внутри class
 Unknown: math.add	Импорт работает? Проверьте import math;
-'@	Set-Content GUIDE_MODULES.md -Encoding UTF8
 ```
