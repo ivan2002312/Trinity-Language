@@ -41,6 +41,8 @@ Write-Host "Repository ready!" -ForegroundColor Green
 Write-Host "[4/4] Building & Installing..." -ForegroundColor Yellow
 cargo build --release
 cargo install --path $env:USERPROFILE\Trinity-Language
+$env:Path = "$env:USERPROFILE\.cargo\bin;$env:Path"
+dir $env:USERPROFILE\.cargo\bin\trinity.exe
 
 Write-Host ""
 Write-Host "============================================" -ForegroundColor Green
