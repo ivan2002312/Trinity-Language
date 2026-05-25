@@ -1,12 +1,8 @@
-module Hello;
-import System.Collections;
+module Test;
 
-class Program {
+class App {
     static int main() {
-        var greeting = "Hello from Trinity!";
-        var x = 42;
-        var y = 10;
-        var result = x + y;
-        return result;
+        println("Hello!");
+        return 0;
     }
 }
