@@ -10,14 +10,6 @@
 
 ```powershell
 irm https://raw.githubusercontent.com/ivan2002312/Trinity-Language/refs/heads/main/install.ps1 | iex
-Ручная
-powershell
-# 1. Установите Rust: https://rustup.rs
-# 2. Клонируйте и соберите
-git clone https://github.com/ivan2002312/Trinity-Language.git
-cd Trinity-Language
-cargo build --release
-cargo install --path .
 ```
 Проверка
 ```powershell
