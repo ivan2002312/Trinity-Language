@@ -1,4 +1,3 @@
-@'
 # Trinity Language
 
 Быстрый, современный язык программирования, объединяющий возможности C, C# и C++.
@@ -19,26 +18,29 @@ git clone https://github.com/ivan2002312/Trinity-Language.git
 cd Trinity-Language
 cargo build --release
 cargo install --path .
+```
 Проверка
-powershell
+```powershell
 trinity --help
+```
 Первая программа
-Создайте файл hello.tr:
-
-trinity
+```Создайте файл hello.tr:
 module Hello;
 
 static int main() {
     println("Hello, World!");
     return 0;
 }
-Запустите:
+```
+
+```Запустите:
 
 powershell
 trinity hello.tr --run
+```
 Основы языка
 Комментарии
-trinity
+
 // Однострочный комментарий
 
 /*
@@ -46,7 +48,7 @@ trinity
    комментарий
 */
 Переменные
-trinity
+```trinity
 // Автовывод типа
 var x = 42;          // int
 var name = "Trinity"; // string
@@ -249,8 +251,9 @@ class Person {
         return age;
     }
 }
+```
 Использование
-trinity
+```trinity
 var person = new Person("Иван", 25);
 person.introduce();
 var age = person.get_age();
@@ -266,7 +269,8 @@ try {
     println("Выполнится всегда");
 }
 throw
-trinity
+```
+```trinity
 static void check_age(int age) {
     if (age < 0) {
         throw "Возраст не может быть отрицательным";
@@ -277,19 +281,22 @@ static void check_age(int age) {
 }
 Встроенные функции
 Ввод/вывод
-trinity
+```
+```trinity
 print("Без перевода строки");
 println("С переводом строки");
 println("Значение: ", переменная);
 
 var input = read_line();  // Чтение с клавиатуры
 Системные
-trinity
+```
+```trinity
 var size = sizeof(int);     // Размер типа в байтах
 var type = typeof(x);       // Тип переменной
 var name = nameof(x);       // Имя переменной как строка
 Шаблоны (Generics)
-trinity
+```
+```trinity
 // Шаблонная функция
 template <T>
 static T max(T a, T b) {
@@ -300,9 +307,10 @@ static T max(T a, T b) {
 // Использование
 var max_int = max(10, 20);
 var max_float = max(3.14, 2.71);
+```
 Примеры программ
 Калькулятор
-trinity
+```trinity
 module Calculator;
 
 static int main() {
@@ -319,8 +327,9 @@ static int main() {
     
     return 0;
 }
+```
 Таблица умножения
-trinity
+```trinity
 module Multiplication;
 
 static int main() {
@@ -332,8 +341,9 @@ static int main() {
     }
     return 0;
 }
+```
 Числа Фибоначчи
-trinity
+```trinity
 module Fibonacci;
 
 static int fib(int n) {
@@ -349,7 +359,8 @@ static int main() {
     return 0;
 }
 FizzBuzz
-trinity
+```
+```trinity
 module FizzBuzz;
 
 static int main() {
@@ -366,8 +377,9 @@ static int main() {
     }
     return 0;
 }
+```
 Угадай число
-trinity
+```trinity
 module GuessNumber;
 
 static int main() {
@@ -392,6 +404,8 @@ static int main() {
     println("Правильно! Попыток: ", attempts);
     return 0;
 }
+```
+```
 Команды
 bash
 trinity file.tr --run         # Запуск программы
@@ -403,6 +417,7 @@ No main	Нет функции main	Добавьте static int main()
 Undefined: x	Переменная не объявлена	Объявите через var
 Cannot add	Разные типы	Приведите типы явно
 Index OOB	Выход за границы массива	Проверьте индекс
+```
 Часто задаваемые вопросы
 В: Нужна ли точка с запятой?
 О: Да, как в C/C++/C#.
