@@ -514,3 +514,103 @@ module не найдено	Проверьте имя файла: math.trm, а н
 Функция не найдена	Функции должны быть static и внутри class
 Unknown: math.add	Импорт работает? Проверьте import math;
 ```
+# Trinity Package Manager (trpip)
+
+Пакетный менеджер для языка Trinity. Устанавливает модули из GitHub репозитория [Trinity-Module](https://github.com/ivan2002312/Trinity-Module).
+
+---
+
+## Команды
+
+### Поиск модулей
+
+```powershell
+trinity trpip search
+trinity trpip search math
+Ищет модули в репозитории Trinity-Module.
+```
+
+Установка модуля
+```powershell
+trinity trpip install math
+trinity trpip install strings
+trinity trpip install openai
+Скачивает .trm файл из репозитория в папку modules/ рядом с trinity.exe.
+```
+
+Список установленных
+```powershell
+trinity trpip list
+Показывает все установленные модули и путь к ним.
+```
+
+Удаление модуля
+```powershell
+trinity trpip remove math
+Удаляет модуль из папки modules/.
+```
+
+Обновление модуля
+```powershell
+trinity trpip install math
+```
+Просто установите заново — модуль перезапишется.
+
+Где хранятся модули
+Модули скачиваются в папку modules/ рядом с trinity.exe:
+
+```text
+C:\Users\Имя\.cargo\bin\
+├── trinity.exe
+└── modules/
+    ├── math/
+    │   └── math.trm
+    ├── strings/
+    │   └── strings.trm
+    └── openai/
+        └── openai.trm
+```
+Как Trinity находит модули
+При import math; Trinity ищет модуль в трёх местах:
+
+Рядом с программой — ./math.trm
+
+В папке src — ./src/math.trm
+
+В папке modules — ./modules/math/math.trm
+
+Если модуль не найден локально, Trinity пытается автоматически скачать его из репозитория!
+
+Использование модуля
+```trinity
+module MyApp;
+import math;  // Trinity сама скачает math, если его нет
+
+class App {
+    static int main() {
+        println("2 + 2 = ", math.add(2, 2));
+        println("5 * 3 = ", math.mul(5, 3));
+        return 0;
+    }
+}
+Создание своего модуля
+Создайте файл .trm:
+```
+
+```trinity
+// mymodule.trm
+module mymodule;
+
+class MyFuncs {
+    static int double(int x) {
+        return x * 2;
+    }
+    
+    static string greet(string name) {
+        return "Hello, " + name + "!";
+    }
+}
+```
+Положите рядом с программой или установите через trpip.
+
+Чтобы опубликовать модуль — сделайте Pull Request в Trinity-Module.
