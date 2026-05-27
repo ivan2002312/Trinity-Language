@@ -614,3 +614,91 @@ class MyFuncs {
 Положите рядом с программой или установите через trpip.
 
 Чтобы опубликовать модуль — сделайте Pull Request в Trinity-Module.
+
+# Компиляция Trinity программ в EXE
+
+Trinity поддерживает компиляцию программ в standalone `.exe` файлы.
+
+---
+
+## Простая компиляция
+
+```powershell
+trinity myapp.tr --build
+Создаст myapp.exe — независимый исполняемый файл.
+```
+
+Структура программы для компиляции
+```trinity
+module MyApp;
+
+class App {
+    static int main() {
+        println("Hello from EXE!");
+        
+        var x = 42;
+        var y = 10;
+        var sum = x + y;
+        println("Sum = ", sum);
+        
+        return 0;
+    }
+}
+```
+
+Поддерживается в компиляции
+Возможность	Статус
+Переменные (var)	✅
+Арифметика (+, -, *, /)	✅
+println / print	✅
+if / else	✅
+while	✅
+for	✅
+return	✅
+Строки	✅
+Числа	✅
+Модули (import)	✅
+read_line()	✅
+Ограничения компиляции
+Параметры функций — только int
+
+Модули компилируются как заглушки
+
+Нет поддержки float, массивов в сгенерированном коде
+
+Сложные функции модулей требуют интерпретатора (--run)
+
+Компиляция с модулями
+```trinity
+module MyApp;
+import math;  // Модуль math.trm
+
+class App {
+    static int main() {
+        var result = math.add(10, 20);
+        println(result);
+        return result;
+    }
+}
+```
+```powershell
+trinity myapp.tr --build
+.\myapp.exe
+```
+Модуль автоматически загрузится и скомпилируется.
+
+Интерпретатор vs Компилятор
+--run	--build
+Скорость запуска	Мгновенно	Требует сборки
+Все возможности	✅	Базовые
+Модули	Полная поддержка	Заглушки
+Размер файла	—	~500 KB
+Отладка	Сообщения об ошибках	Ошибки Rust
+Рекомендации
+Разработка: trinity file.tr --run
+
+Релиз: trinity file.tr --build
+
+Модули: Используйте --run
+
+Простой код: Используйте --build
