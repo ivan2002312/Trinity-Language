@@ -1,0 +1,7 @@
+module math;
+
+class MathFuncs {
+    static int add(int a, int b) {
+        return a + b;
+    }
+}

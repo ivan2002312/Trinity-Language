@@ -1,0 +1,432 @@
+﻿// Расширенная система модулей Trinity
+
+// ==========================================
+// 1. Улучшенный импорт с алиасами
+// ==========================================
+
+// import long.module.name as short;
+// short.func();
+
+// ==========================================
+// 2. Выборочный импорт
+// ==========================================
+
+// import { func1, func2 } from module;
+// func1();
+
+// ==========================================
+// 3. Экспорт по умолчанию
+// ==========================================
+
+// export default class Main { ... }
+// import Main from module;
+
+// ==========================================
+// 4. Публичные и приватные функции
+// ==========================================
+
+module mymodule;
+
+// Публичная функция (доступна при импорте)
+public static int add(int a, int b) {
+    return a + b;
+}
+
+// Приватная функция (только внутри модуля)
+private static int helper(int x) {
+    return x * 2;
+}
+
+// ==========================================
+// 5. Константы модуля
+// ==========================================
+
+module config;
+
+public const string APP_NAME = "MyApp";
+public const int MAX_USERS = 100;
+public const float PI = 3.14159;
+public const bool DEBUG = true;
+
+// Использование: config.APP_NAME
+
+// ==========================================
+// 6. Переменные модуля (singleton)
+// ==========================================
+
+module counter;
+
+private static int count = 0;
+
+public static void increment() {
+    count = count + 1;
+}
+
+public static int get_count() {
+    return count;
+}
+
+public static void reset() {
+    count = 0;
+}
+
+// ==========================================
+// 7. Типы и структуры модуля
+// ==========================================
+
+module types;
+
+public struct Point {
+    int x;
+    int y;
+}
+
+public struct Rectangle {
+    Point top_left;
+    Point bottom_right;
+}
+
+public enum Color {
+    Red,
+    Green,
+    Blue,
+    Black,
+    White
+}
+
+public enum Status {
+    Active,
+    Inactive,
+    Pending,
+    Deleted
+}
+
+// ==========================================
+// 8. Интерфейсы модуля
+// ==========================================
+
+module interfaces;
+
+public interface Printable {
+    void print();
+}
+
+public interface Comparable {
+    int compare(object other);
+}
+
+public interface Serializable {
+    string serialize();
+    void deserialize(string data);
+}
+
+// ==========================================
+// 9. Примеси (mixins)
+// ==========================================
+
+module mixins;
+
+public mixin Logger {
+    void log(string msg) {
+        println("[LOG] ", msg);
+    }
+    
+    void error(string msg) {
+        println("[ERROR] ", msg);
+    }
+}
+
+public mixin Validator {
+    bool is_empty(string s) {
+        return s.len() == 0;
+    }
+    
+    bool is_positive(int n) {
+        return n > 0;
+    }
+}
+
+// Использование: class MyClass with Logger, Validator { ... }
+
+// ==========================================
+// 10. Дженерики в модулях
+// ==========================================
+
+module generics;
+
+public static T max<T>(T a, T b) where T: Comparable {
+    if (a > b) return a;
+    return b;
+}
+
+public static T min<T>(T a, T b) where T: Comparable {
+    if (a < b) return a;
+    return b;
+}
+
+public static void swap<T>(ref T a, ref T b) {
+    var temp = a;
+    a = b;
+    b = temp;
+}
+
+// ==========================================
+// 11. Асинхронные функции модуля
+// ==========================================
+
+module async_utils;
+
+public static async void delay(int ms) {
+    sleep(ms);
+}
+
+public static async string fetch_url(string url) {
+    println("[Fetch] ", url);
+    return http_get(url);
+}
+
+public static async void parallel(void func1(), void func2()) {
+    func1();
+    func2();
+}
+
+// ==========================================
+// 12. Декораторы функций
+// ==========================================
+
+module decorators;
+
+public decorator timed(func) {
+    var start = now();
+    func();
+    var end = now();
+    println("Execution time: ", end - start, "ms");
+}
+
+public decorator cached(func) {
+    // Кеширует результат функции
+}
+
+public decorator deprecated(string message) {
+    println("[WARNING] Deprecated: ", message);
+}
+
+// Использование:
+// @timed
+// static void myFunc() { ... }
+
+// ==========================================
+// 13. События модуля
+// ==========================================
+
+module events;
+
+public class EventEmitter {
+    private void callbacks();
+    
+    void on(string event, void callback()) {
+        // Регистрация обработчика
+    }
+    
+    void emit(string event) {
+        // Вызов всех обработчиков
+    }
+    
+    void off(string event) {
+        // Удаление обработчика
+    }
+}
+
+// ==========================================
+// 14. Middleware для модулей
+// ==========================================
+
+module middleware;
+
+public void before_import(string module_name) {
+    println("[Module] Loading: ", module_name);
+}
+
+public void after_import(string module_name) {
+    println("[Module] Loaded: ", module_name);
+}
+
+public bool validate_module(string module_name) {
+    // Проверка версии, зависимостей
+    return true;
+}
+
+// ==========================================
+// 15. Автозагрузка модулей
+// ==========================================
+
+// Trinity автоматически ищет модули в:
+// 1. ./ - текущая папка
+// 2. ./modules/ - папка модулей
+// 3. ./packages/ - установленные пакеты
+// 4. ~/.trinity/modules/ - глобальные модули
+// 5. Указанные в TRINITY_PATH
+
+// ==========================================
+// 16. Версионирование модулей
+// ==========================================
+
+module versioned@1.2.0;
+
+// import versioned@1.2.0;  // Конкретная версия
+// import versioned@^1.2;   // Совместимая версия
+// import versioned@latest; // Последняя версия
+
+// ==========================================
+// 17. Условная компиляция
+// ==========================================
+
+module platform;
+
+#if PLATFORM == "windows"
+    public static string newline() { return "\r\n"; }
+#elif PLATFORM == "linux"
+    public static string newline() { return "\n"; }
+#else
+    public static string newline() { return "\n"; }
+#endif
+
+#if DEBUG
+    public static void debug_log(string msg) {
+        println("[DEBUG] ", msg);
+    }
+#else
+    public static void debug_log(string msg) { }
+#endif
+
+// ==========================================
+// 18. Документирование модуля
+// ==========================================
+
+/// Модуль для работы с математическими функциями
+/// @author Trinity Team
+/// @version 1.0.0
+/// @license MIT
+module math;
+
+/// Складывает два числа
+/// @param a Первое число
+/// @param b Второе число
+/// @returns Сумма a и b
+public static int add(int a, int b) {
+    return a + b;
+}
+
+/// Вычитает b из a
+/// @param a Уменьшаемое
+/// @param b Вычитаемое
+/// @returns Разность a - b
+public static int sub(int a, int b) {
+    return a - b;
+}
+
+// ==========================================
+// 19. Тестирование модуля
+// ==========================================
+
+module math_tests;
+
+import math;
+
+public static void test_add() {
+    assert(math.add(2, 2) == 4);
+    assert(math.add(0, 0) == 0);
+    assert(math.add(-1, 1) == 0);
+    println("[TEST] add: PASSED");
+}
+
+public static void test_sub() {
+    assert(math.sub(5, 3) == 2);
+    assert(math.sub(0, 5) == -5);
+    println("[TEST] sub: PASSED");
+}
+
+public static void run_all() {
+    test_add();
+    test_sub();
+    println("[TEST] All tests passed!");
+}
+
+// ==========================================
+// 20. Горячая перезагрузка модуля
+// ==========================================
+
+// При изменении .trm файла Trinity автоматически перезагружает модуль
+// import hot_reload("module");
+
+// ==========================================
+// 21. Метаданные модуля
+// ==========================================
+
+module meta;
+
+public static void info() {
+    println("Module: ", __MODULE__);
+    println("File: ", __FILE__);
+    println("Version: ", __VERSION__);
+    println("Author: ", __AUTHOR__);
+}
+
+// ==========================================
+// 22. Зависимости модуля
+// ==========================================
+
+// trinity.json:
+{
+    "name": "myapp",
+    "version": "1.0.0",
+    "dependencies": {
+        "math": "^1.0.0",
+        "strings": "~2.1.0",
+        "openai": "latest",
+        "gui": ">=0.5.0"
+    },
+    "devDependencies": {
+        "test": "^1.0.0"
+    },
+    "optionalDependencies": {
+        "database": "^1.0.0"
+    }
+}
+
+// ==========================================
+// 23. Экспорт модуля
+// ==========================================
+
+// export.trm
+export {
+    add,
+    sub,
+    mul,
+    div as divide
+} from math;
+
+export default class Calculator {
+    // Основной экспорт
+}
+
+export * from strings;  // Экспортировать всё
+
+// ==========================================
+// 24. Динамическая загрузка
+// ==========================================
+
+module loader;
+
+public static object load(string module_name) {
+    return dynamic_import(module_name);
+}
+
+public static void unload(string module_name) {
+    dynamic_unload(module_name);
+}
+
+public static void reload(string module_name) {
+    unload(module_name);
+    load(module_name);
+}

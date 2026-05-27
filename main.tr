@@ -1,0 +1,19 @@
+module Main;
+
+class App {
+    static int main() {
+        println("=== Trinity EXE ===");
+        println("Hello from standalone application!");
+        println("");
+        
+        var x = 42;
+        var y = 10;
+        var sum = x + y;
+        
+        println("x = ", x);
+        println("y = ", y);
+        println("Sum = ", sum);
+        
+        return 0;
+    }
+}

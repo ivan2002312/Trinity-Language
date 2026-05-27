@@ -1,0 +1,7 @@
+module Test;
+class App {
+    static int main() {
+        println("Hello World!");
+        return 42;
+    }
+}

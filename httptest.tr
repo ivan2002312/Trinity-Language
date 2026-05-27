@@ -1,0 +1,19 @@
+module HttpTest;
+
+class App {
+    static int main() {
+        println("Testing HTTP...");
+        
+        // GET
+        var r1 = http_get("https://httpbin.org/get");
+        println("GET response:");
+        println(r1);
+        
+        // POST
+        var r2 = http_post("https://httpbin.org/post", "hello=world");
+        println("POST response:");
+        println(r2);
+        
+        return 0;
+    }
+}
